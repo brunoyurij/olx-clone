@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { PageArea, Fake } from './styled'
+import { useParams, Link } from 'react-router-dom'
+import { Slide } from 'react-slideshow-image'
+import { PageArea, Fake, OtherArea, BreadCrumb } from './styled'
 import useApi from '../../helpers/OlxAPI'
+import AdItem from '../../components/partials/AdItem'
 
 import { PageContainer } from '../../components/MainComponents'
 
@@ -21,7 +23,7 @@ const AdPage = () => {
         }
 
         getAdInfo(id)
-    }, [])
+    }, [id])
 
     const formatDate = (date) => {
         const cDate = new Date(date)
@@ -50,11 +52,40 @@ const AdPage = () => {
 
     return (
         <PageContainer>
+            {adInfo.category && (
+                <BreadCrumb>
+                    Você está aqui:
+                    <Link to="/">Home</Link>/
+                    <Link to={`/ads?state=${adInfo.stateName}`}>
+                        {adInfo.stateName}
+                    </Link>
+                    /
+                    <Link
+                        to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}
+                    >
+                        {adInfo.category.name}
+                    </Link>
+                    / {adInfo.title}
+                </BreadCrumb>
+            )}
+
             <PageArea>
                 <div className="leftSide">
                     <div className="box">
                         <div className="adImage">
                             {loading && <Fake height={300} />}
+                            {adInfo.images && (
+                                <Slide>
+                                    {adInfo.images.map((img, k) => (
+                                        <div
+                                            className="each-slide"
+                                            key={Number(k)}
+                                        >
+                                            <img src={img} alt="" />
+                                        </div>
+                                    ))}
+                                </Slide>
+                            )}
                         </div>
 
                         <div className="adInfo">
@@ -64,7 +95,7 @@ const AdPage = () => {
 
                                 {adInfo.dateCreated && (
                                     <small>
-                                        Criado em{' '}
+                                        Criado em
                                         {formatDate(adInfo.dateCreated)}
                                     </small>
                                 )}
@@ -86,13 +117,46 @@ const AdPage = () => {
                 <div className="rightSide">
                     <div className="box box-padding">
                         {loading && <Fake height={20} />}
-                    </div>
+                        {adInfo.priceNegotiable && 'Preço Negociável'}
 
-                    <div className="box box-padding">
-                        {loading && <Fake height={50} />}
+                        {!adInfo.priceNegotiable && adInfo.price && (
+                            <div className="price">
+                                Preço: <span>R${adInfo.price}</span>
+                            </div>
+                        )}
                     </div>
+                    {loading && <Fake height={50} />}
+                    {adInfo.userInfo && (
+                        <>
+                            <a
+                                href={`mailto:${adInfo.userInfo.email}`}
+                                target="_blank"
+                                rel="no"
+                                className="ContactSellesLink"
+                            >
+                                Fale com o vendedor
+                            </a>
+                            <div className="box box-padding createdBy">
+                                <strong>{adInfo.userInfo.name}</strong>
+                                <small>E-mail: {adInfo.userInfo.email}</small>
+                                <small>Estado: {adInfo.stateName}</small>
+                            </div>
+                        </>
+                    )}
                 </div>
             </PageArea>
+            <OtherArea>
+                {adInfo.others && (
+                    <>
+                        <h2>Outras ofertas do vendedor</h2>
+                        <div className="list">
+                            {adInfo.others.map((i, k) => (
+                                <AdItem key={Number(k)} data={i} />
+                            ))}
+                        </div>
+                    </>
+                )}
+            </OtherArea>
         </PageContainer>
     )
 }
