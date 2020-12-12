@@ -1,26 +1,26 @@
 Arguments: 
-  /home/brunoyurij/.nvm/versions/node/v14.15.1/bin/node /usr/share/yarn/bin/yarn.js add @babel/preset-plugin-transform-runtime -D
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add text-mask-adons
 
 PATH: 
-  /home/brunoyurij/Documentos/b7web/ecommerce/node_modules/.bin:/home/brunoyurij/.yarn/bin:/home/brunoyurij/.config/yarn/global/node_modules/.bin:/home/brunoyurij/.yarn/bin:/home/brunoyurij/.config/yarn/global/node_modules/.bin:/home/brunoyurij/.nvm/versions/node/v14.15.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/brunoyurij/Android/Sdk/tools:/home/brunoyurij/Android/Sdk/platform-tools:/home/brunoyurij/android-studio/bin:/usr/local/go/bin:/home/brunoyurij/go/bin:/usr/lib/jvm/java-8-openjdk-amd64/bin:/home/brunoyurij/Android/Sdk/tools:/home/brunoyurij/Android/Sdk/platform-tools:/home/brunoyurij/android-studio/bin:/usr/local/go/bin:/home/brunoyurij/go/bin:/usr/lib/jvm/java-8-openjdk-amd64/bin
+  C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Sybase\SQL Anywhere 9\ia64;C:\Program Files (x86)\Sybase\Shared\Sybase Central 4.3\ia64;C:\Program Files (x86)\Sybase\Shared\PowerBuilder;C:\Program Files (x86)\Sybase\InfoMaker 9.0\Tutorial;C:\Program Files (x86)\Sybase\SQL Anywhere 9\win32;C:\Program Files (x86)\Sybase\Shared\win32;C:\Program Files (x86)\Sybase\SQL Anywhere 9\drivers;C:\Program Files (x86)\Sybase\Shared\Sybase Central 4.3\win32;C:\Program Files\Java\jdk-15.0.1\bin;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\SQL Anywhere 11\bin64;C:\Program Files (x86)\SQL Anywhere 11\bin32;C:\Program Files (x86)\Sybase\PowerBuilder 11.5;C:\Windows\Microsoft.NET\Framework\v2.0.50727;C:\Program Files\Git\cmd;C:\Program Files (x86)\Appeon\Shared\PowerBuilder;C:\Program Files (x86)\Appeon\Shared\PowerBuilder\x64;C:\Program Files (x86)\Appeon\PowerBuilder 19.0;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\TortoiseGit\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\bruno.yuri.PORTAL\AppData\Local\Microsoft\WindowsApps;;C:\Users\bruno.yuri.PORTAL\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bruno.yuri.PORTAL\AppData\Roaming\npm;C:\Users\bruno.yuri.PORTAL\AppData\Local\Yarn\bin
 
 Yarn version: 
   1.22.5
 
 Node version: 
-  14.15.1
+  14.15.0
 
 Platform: 
-  linux x64
+  win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@babel%2fpreset-plugin-transform-runtime: Not found
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
+  Error: https://registry.yarnpkg.com/text-mask-adons: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66097:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140749:22)
       at Request.emit (events.js:315:20)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141721:10)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141721:10)
       at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141643:12)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141643:12)
       at Object.onceWrapper (events.js:421:28)
       at IncomingMessage.emit (events.js:327:22)
       at endReadableNT (_stream_readable.js:1327:12)
@@ -54,11 +54,14 @@ npm manifest:
       "eslint-plugin-react-hooks": "^4",
       "js-cookie": "^2.2.1",
       "prop-types": "^15.7.2",
-      "react": ">= 16.8.0",
+      "qs": "^6.9.4",
+      "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
       "react-dom": ">= 16.8.0",
       "react-is": ">= 16.8.0",
       "react-redux": "^7.2.2",
       "react-router-dom": "^5.2.0",
+      "react-slideshow-image": "^3.4.2",
+      "react-text-mask": "^5.4.3",
       "redux": "^4.0.5",
       "styled": "^1.0.0",
       "styled-components": "^5.2.1"
@@ -1100,6 +1103,11 @@ Lockfile:
     dependencies:
       "@parcel/utils" "^1.11.0"
       physical-cpu-count "^2.0.0"
+  
+  "@tweenjs/tween.js@^18.1.2":
+    version "18.6.4"
+    resolved "https://registry.yarnpkg.com/@tweenjs/tween.js/-/tween.js-18.6.4.tgz#40a3d0a93647124872dec8e0fd1bd5926695b6ca"
+    integrity sha512-lB9lMjuqjtuJrx7/kOkqQBtllspPIN+96OvTCeJ2j5FEzinoAXTdAMFnDAQT1KVPRlnYfBrqxtqP66vDM40xxQ==
   
   "@types/json5@^0.0.29":
     version "0.0.29"
@@ -5001,7 +5009,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
     integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
   
-  prop-types@^15.6.2, prop-types@^15.7.2:
+  prop-types@^15.5.6, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5056,6 +5064,11 @@ Lockfile:
     version "1.5.1"
     resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
     integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
+  
+  qs@^6.9.4:
+    version "6.9.4"
+    resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
+    integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
   
   qs@~6.5.2:
     version "6.5.2"
@@ -5160,13 +5173,29 @@ Lockfile:
       tiny-invariant "^1.0.2"
       tiny-warning "^1.0.0"
   
-  "react@>= 16.8.0":
-    version "17.0.1"
-    resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
-    integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
+  react-slideshow-image@^3.4.2:
+    version "3.4.2"
+    resolved "https://registry.yarnpkg.com/react-slideshow-image/-/react-slideshow-image-3.4.2.tgz#8e18b3aa627ab3962983b526ea006b96f8399212"
+    integrity sha512-h5nXJgpsY4/li+80Kk/ZPAn80xJEJYKUyLpebiSASHInGHQTSGo5yoz5bkBnPYEqc/J+5rkM86ZScV1/X1N4mw==
+    dependencies:
+      "@tweenjs/tween.js" "^18.1.2"
+      resize-observer-polyfill "^1.5.1"
+  
+  react-text-mask@^5.4.3:
+    version "5.4.3"
+    resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.4.3.tgz#991efb4299e30c2e6c2c46d13f617169463e0d2d"
+    integrity sha1-mR77QpnjDC5sLEbRP2FxaUY+DS0=
+    dependencies:
+      prop-types "^15.5.6"
+  
+  "react@^0.14.0 || ^15.0.0 || ^16.0.0":
+    version "16.14.0"
+    resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+    integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
     dependencies:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"
+      prop-types "^15.6.2"
   
   read-pkg-up@^2.0.0:
     version "2.0.0"
@@ -5359,6 +5388,11 @@ Lockfile:
       tough-cookie "~2.5.0"
       tunnel-agent "^0.6.0"
       uuid "^3.3.2"
+  
+  resize-observer-polyfill@^1.5.1:
+    version "1.5.1"
+    resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
+    integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
   
   resolve-from@^3.0.0:
     version "3.0.0"

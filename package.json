@@ -26,14 +26,16 @@
     "js-cookie": "^2.2.1",
     "prop-types": "^15.7.2",
     "qs": "^6.9.4",
-    "react": ">= 16.8.0",
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
     "react-dom": ">= 16.8.0",
     "react-is": ">= 16.8.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-slideshow-image": "^3.4.2",
+    "react-text-mask": "^5.4.3",
     "redux": "^4.0.5",
     "styled": "^1.0.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "text-mask-addons": "^3.8.0"
   }
 }

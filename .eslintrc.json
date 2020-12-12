@@ -27,6 +27,7 @@
         "jsx-a11y/label-has-associated-control": "off",
         "no-param-reassign" : "off",
         "react/jsx-props-no-spreading": "off",
-        "react/jsx-no-target-blank": "off"
+        "react/jsx-no-target-blank": "off",
+        "jsx-a11y/control-has-associated-label" : "off"
     }
 }
