@@ -8,6 +8,7 @@ import { PageContainer } from '../../components/MainComponents'
 
 const AdPage = () => {
     const api = useApi()
+    const history = useHistory()
 
     const useQueryString = () => {
         return new URLSearchParams(useLocation().search)
@@ -35,10 +36,30 @@ const AdPage = () => {
         getStates()
     }, [])
 
+    React.useEffect(() => {
+        const queryString = []
+
+        if (q) {
+            queryString.push(`q=${q}`)
+        }
+
+        if (cat) {
+            queryString.push(`cat=${cat}`)
+        }
+
+        if (state) {
+            queryString.push(`state=${state}`)
+        }
+
+        history.replace({
+            search: `?${queryString.join('&')}`,
+        })
+    }, [q, cat, state])
+
     useEffect(() => {
         const getCategories = async () => {
-            const cat = await api.getCategories()
-            setCategories(cat)
+            const catList = await api.getCategories()
+            setCategories(catList)
         }
 
         getCategories()
@@ -54,7 +75,9 @@ const AdPage = () => {
                             name="q"
                             placeholder="Digite o que você procura"
                             value={q}
-                            onChange={() => {}}
+                            onChange={(e) => {
+                                setQ(e.target.value)
+                            }}
                         />
 
                         <div className="filterName">Estado: </div>
@@ -62,7 +85,9 @@ const AdPage = () => {
                             name="state"
                             id="state"
                             value={state}
-                            onChange={() => {}}
+                            onChange={(e) => {
+                                setState(e.target.value)
+                            }}
                         >
                             <option value="" />
                             {stateList.map((i, k) => (
@@ -83,6 +108,7 @@ const AdPage = () => {
                                             ? 'categoryItem active'
                                             : 'categoryItem'
                                     }
+                                    onClick={() => setCat(i.slug)}
                                 >
                                     <img src={i.img} alt="" />
                                     <span>{i.name}</span>
