@@ -3,19 +3,19 @@ import React, { useState, useEffect } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import { PageArea } from './styled'
 import useApi from '../../helpers/OlxAPI'
+import AdItem from '../../components/partials/AdItem'
 
 import { PageContainer } from '../../components/MainComponents'
 
 const AdPage = () => {
     const api = useApi()
     const history = useHistory()
+    const timer = React.useRef(null)
 
     const useQueryString = () => {
         return new URLSearchParams(useLocation().search)
     }
-
     const query = useQueryString()
-
     const [q, setQ] = useState(query.get('q') != null ? query.get('q') : '')
     const [cat, setCat] = useState(
         query.get('cat') != null ? query.get('cat') : ''
@@ -23,9 +23,21 @@ const AdPage = () => {
     const [state, setState] = useState(
         query.get('state') != null ? query.get('state') : ''
     )
-
     const [stateList, setStateList] = useState([])
     const [categories, setCategories] = useState([])
+    const [addList, setAddList] = useState([])
+
+    const getAdsList = async () => {
+        const json = await api.getAds({
+            sort: 'desc',
+            limit: 9,
+            q,
+            cat,
+            state,
+        })
+
+        setAddList(json.ads)
+    }
 
     React.useEffect(() => {
         const getStates = async () => {
@@ -54,6 +66,12 @@ const AdPage = () => {
         history.replace({
             search: `?${queryString.join('&')}`,
         })
+
+        if (timer.current) {
+            clearTimeout(timer.current)
+        }
+
+        timer.current = setTimeout(getAdsList, 2000)
     }, [q, cat, state])
 
     useEffect(() => {
@@ -69,7 +87,7 @@ const AdPage = () => {
         <PageContainer>
             <PageArea>
                 <div className="leftSide">
-                    <form action="GET">
+                    <form>
                         <input
                             type="text"
                             name="q"
@@ -117,7 +135,15 @@ const AdPage = () => {
                         </ul>
                     </form>
                 </div>
-                <div className="rightSide">...</div>
+                <div className="rightSide">
+                    <h2>Resultado</h2>
+
+                    <div className="list">
+                        {addList.map((i, k) => (
+                            <AdItem key={Number(k)} data={i} />
+                        ))}
+                    </div>
+                </div>
             </PageArea>
         </PageContainer>
     )
