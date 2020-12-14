@@ -26,18 +26,36 @@ const AdPage = () => {
     const [stateList, setStateList] = useState([])
     const [categories, setCategories] = useState([])
     const [addList, setAddList] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [adsTotal, setAdsTotal] = useState(0)
+    const [pageCount, setPageCount] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const getAdsList = async () => {
+        setLoading(true)
+        const offset = (currentPage - 1) * 2
+
         const json = await api.getAds({
             sort: 'desc',
-            limit: 9,
+            limit: 2,
             q,
             cat,
             state,
+            offset,
         })
 
         setAddList(json.ads)
+        setAdsTotal(json.total)
+        setLoading(false)
     }
+
+    React.useEffect(() => {
+        if (addList.length > 0) {
+            setPageCount(Math.ceil(adsTotal / addList.length))
+        } else {
+            setPageCount(0)
+        }
+    }, [adsTotal])
 
     React.useEffect(() => {
         const getStates = async () => {
@@ -72,7 +90,12 @@ const AdPage = () => {
         }
 
         timer.current = setTimeout(getAdsList, 2000)
+        setCurrentPage(1)
     }, [q, cat, state])
+
+    useEffect(() => {
+        getAdsList()
+    }, [currentPage])
 
     useEffect(() => {
         const getCategories = async () => {
@@ -82,6 +105,12 @@ const AdPage = () => {
 
         getCategories()
     }, [])
+
+    const pagination = []
+
+    for (let i = 1; i <= pageCount; i += 1) {
+        pagination.push(i)
+    }
 
     return (
         <PageContainer>
@@ -122,7 +151,7 @@ const AdPage = () => {
                                 <li
                                     key={Number(k)}
                                     className={
-                                        cat == i.slug
+                                        cat === i.slug
                                             ? 'categoryItem active'
                                             : 'categoryItem'
                                     }
@@ -138,9 +167,35 @@ const AdPage = () => {
                 <div className="rightSide">
                     <h2>Resultado</h2>
 
+                    {loading && addList.length === 0 && (
+                        <div className="listWarning">Carregando...</div>
+                    )}
+
+                    {!loading && addList.length === 0 && (
+                        <div className="listWarning">
+                            Não encontramos resultados
+                        </div>
+                    )}
+
                     <div className="list">
                         {addList.map((i, k) => (
                             <AdItem key={Number(k)} data={i} />
+                        ))}
+                    </div>
+
+                    <div className="pagination">
+                        {pagination.map((i, k) => (
+                            <div
+                                className={
+                                    i === currentPage
+                                        ? 'pagItem active'
+                                        : 'pagItem'
+                                }
+                                key={Number(k)}
+                                onClick={() => setCurrentPage(i)}
+                            >
+                                {i}
+                            </div>
                         ))}
                     </div>
                 </div>
