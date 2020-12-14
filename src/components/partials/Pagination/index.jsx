@@ -2,8 +2,20 @@ import React from 'react'
 
 const Pagination = ({ currentPage, setCurrentPage, pageCount }) => {
     const pagination = []
+    const limitOfButtons = 5
+    let limitOfButtonsLeft = currentPage - Math.floor(limitOfButtons / 2)
+    let limitOfButtonsRight = currentPage + Math.floor(limitOfButtons / 2)
 
-    for (let i = 1; i <= pageCount; i += 1) {
+    if (limitOfButtonsLeft <= 0) {
+        limitOfButtonsLeft = 1
+        limitOfButtonsRight = limitOfButtons
+    }
+
+    if (limitOfButtonsRight > pageCount) {
+        limitOfButtonsRight = pageCount
+    }
+
+    for (let i = limitOfButtonsLeft; i <= limitOfButtonsRight; i += 1) {
         pagination.push(i)
     }
 
