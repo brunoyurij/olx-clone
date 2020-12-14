@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { PageArea } from './styled'
 import useApi from '../../helpers/OlxAPI'
 import AdItem from '../../components/partials/AdItem'
+import Pagination from '../../components/partials/Pagination'
 
 import { PageContainer } from '../../components/MainComponents'
 
@@ -33,11 +34,12 @@ const AdPage = () => {
 
     const getAdsList = async () => {
         setLoading(true)
-        const offset = (currentPage - 1) * 2
+        const limit = 2
+        const offset = (currentPage - 1) * limit
 
         const json = await api.getAds({
             sort: 'desc',
-            limit: 2,
+            limit,
             q,
             cat,
             state,
@@ -105,12 +107,6 @@ const AdPage = () => {
 
         getCategories()
     }, [])
-
-    const pagination = []
-
-    for (let i = 1; i <= pageCount; i += 1) {
-        pagination.push(i)
-    }
 
     return (
         <PageContainer>
@@ -183,21 +179,11 @@ const AdPage = () => {
                         ))}
                     </div>
 
-                    <div className="pagination">
-                        {pagination.map((i, k) => (
-                            <div
-                                className={
-                                    i === currentPage
-                                        ? 'pagItem active'
-                                        : 'pagItem'
-                                }
-                                key={Number(k)}
-                                onClick={() => setCurrentPage(i)}
-                            >
-                                {i}
-                            </div>
-                        ))}
-                    </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        pageCount={pageCount}
+                    />
                 </div>
             </PageArea>
         </PageContainer>
