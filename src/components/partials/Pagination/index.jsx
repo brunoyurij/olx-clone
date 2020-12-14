@@ -21,6 +21,14 @@ const Pagination = ({ currentPage, setCurrentPage, pageCount }) => {
 
     return (
         <div className="pagination">
+            {limitOfButtonsLeft !== 1 && (
+                <div
+                    className="pagItem border"
+                    onClick={() => setCurrentPage(1)}
+                >
+                    {'<<'}
+                </div>
+            )}
             {pagination.map((i, k) => (
                 <div
                     className={i === currentPage ? 'pagItem active' : 'pagItem'}
@@ -30,6 +38,15 @@ const Pagination = ({ currentPage, setCurrentPage, pageCount }) => {
                     {i}
                 </div>
             ))}
+
+            {limitOfButtonsRight !== pageCount && (
+                <div
+                    className="pagItem border"
+                    onClick={() => setCurrentPage(pageCount)}
+                >
+                    {'>>'}
+                </div>
+            )}
         </div>
     )
 }
