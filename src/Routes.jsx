@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp'
 import AdPage from './pages/AdPage'
 import AddAd from './pages/AddAd'
 import Ads from './pages/Ads'
+import MyAccount from './pages/MyAccount'
 import NotFound from './pages/NotFound'
 
 export default () => {
@@ -39,6 +40,10 @@ export default () => {
 
             <RouteHandler private exact path="/ads">
                 <Ads />
+            </RouteHandler>
+
+            <RouteHandler private exact path="/my-account">
+                <MyAccount />
             </RouteHandler>
 
             <RouteHandler>
