@@ -1,1 +1,1 @@
-Criando clone da OLX
+Criando clone da OLX. Utilizado React.
